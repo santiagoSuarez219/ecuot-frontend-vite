@@ -10,26 +10,41 @@ import Conflictos from "./pages/Conflictos";
 import Intervenciones from "./pages/Intervenciones";
 import Layout from "./layouts/Layout";
 import Home from "./pages/Home";
+import RutaProtegida from "./layouts/RutaProtegida.jsx";
+import PanelAdministrador from "./pages/PanelAdministrador.jsx";
+
+import { AuthProvider } from "./context/AuthProvider";
+import { EcuotProvider } from "./context/EcuotProvider.jsx";
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="noticias" element={<Noticias />} />
-          <Route path="conflictos" element={<Conflictos />} />
-          <Route path="intervenciones" element={<Intervenciones />} />
-        </Route>
-        <Route path="/auth" element={<AuthLayout />}>
-          <Route index element={<Login />} />
-          <Route path="registrar" element={<Registrar />} />
-          <Route path="registrar" element={<Registrar />} />
-          <Route path="olvide-password" element={<OlvidePassword />} />
-          <Route path="olvide-password/:token" element={<NuevoPassword />} />
-          <Route path="confirmar/:id" element={<ConfirmarCuenta />} />
-        </Route>
-      </Routes>
+      <AuthProvider>
+        <EcuotProvider>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Home />} />
+              <Route path="noticias" element={<Noticias />} />
+              <Route path="conflictos" element={<Conflictos />} />
+              <Route path="intervenciones" element={<Intervenciones />} />
+            </Route>
+            <Route path="/auth" element={<AuthLayout />}>
+              <Route index element={<Login />} />
+              <Route path="registrar" element={<Registrar />} />
+              <Route path="registrar" element={<Registrar />} />
+              <Route path="olvide-password" element={<OlvidePassword />} />
+              <Route
+                path="olvide-password/:token"
+                element={<NuevoPassword />}
+              />
+              <Route path="confirmar/:id" element={<ConfirmarCuenta />} />
+            </Route>
+            <Route path="/administrar" element={<RutaProtegida />}>
+              <Route index element={<PanelAdministrador />} />
+            </Route>
+          </Routes>
+        </EcuotProvider>
+      </AuthProvider>
     </BrowserRouter>
   );
 }
