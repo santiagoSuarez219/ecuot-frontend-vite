@@ -1,14 +1,14 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
-const AuthLayout = () => {
+const Layout = () => {
   return (
     <>
       <Navbar />
-      <main>
+      <main className="w-full h-[calc(100vh-96px)] overflow-y-auto justify-center items-center p-4">
         <Outlet />
       </main>
     </>
   );
 };
-export default AuthLayout;
+export default Layout;
