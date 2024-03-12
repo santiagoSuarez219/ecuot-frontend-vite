@@ -5,6 +5,9 @@ import Registrar from "./pages/Registrar";
 import OlvidePassword from "./pages/OlvidePassword";
 import NuevoPassword from "./pages/NuevoPassword";
 import ConfirmarCuenta from "./pages/ConfirmarCuenta";
+import Noticias from "./pages/Noticias";
+import Conflictos from "./pages/Conflictos";
+import Intervenciones from "./pages/Intervenciones";
 
 function App() {
   return (
@@ -18,6 +21,9 @@ function App() {
           <Route path="olvide-password" element={<OlvidePassword />} />
           <Route path="olvide-password/:token" element={<NuevoPassword />} />
           <Route path="confirmar/:id" element={<ConfirmarCuenta />} />
+          <Route path="noticias" element={<Noticias />} />
+          <Route path="conflictos" element={<Conflictos />} />
+          <Route path="intervenciones" element={<Intervenciones />} />
         </Route>
       </Routes>
     </BrowserRouter>
