@@ -9,3 +9,7 @@ body {
   padding: 0;
   font-family: "Inter", sans-serif;
 }
+
+.main-image {
+  filter: grayscale(100%);
+}
