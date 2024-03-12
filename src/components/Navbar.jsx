@@ -14,14 +14,14 @@ export default function Navbar() {
             <Link to={"/"}>ECUOT Repositorio Institucional</Link>
           </h1>
           <ul className="hidden lg:flex gap-6 text-sm font-medium">
-            <li>
+            <li className="hover:underline underline-offset-4">
               <Link to={"/noticias"}>Noticias</Link>
             </li>
-            <li>
+            <li className="hover:underline underline-offset-4">
               <Link to={"/conflictos"}>Conflictos</Link>
             </li>
 
-            <li>
+            <li className="hover:underline underline-offset-4">
               <Link to={"/intervenciones"}>Intervenciones</Link>
             </li>
           </ul>

@@ -3,6 +3,7 @@ import EquipoTrabajo from "../components/EquipoTrabajo";
 import SeccionIntervenciones from "../components/SeccionIntervenciones";
 import SeccionNoticias from "../components/SeccionNoticias";
 import SeccionConflictos from "../components/SeccionConflictos";
+import Footer from "../components/Footer.jsx";
 
 const Home = () => {
   return (
@@ -32,6 +33,7 @@ const Home = () => {
       <SeccionIntervenciones />
       <SeccionNoticias />
       <SeccionConflictos />
+      <Footer />
     </main>
   );
 };
