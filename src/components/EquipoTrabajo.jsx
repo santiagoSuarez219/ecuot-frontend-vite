@@ -1,6 +1,6 @@
 const EquipoTrabajo = () => {
   return (
-    <section className="p-4 w-full text-center space-y-6 mb-6 bg-gray-200 rounded-lg max-w-screen-xl mx-auto">
+    <section className="p-4 w-full text-center space-y-6 mb-6 bg-gray-200 rounded-lg mx-auto mt-24 p-12">
       <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl">
         Equipo de trabajo
       </h1>
