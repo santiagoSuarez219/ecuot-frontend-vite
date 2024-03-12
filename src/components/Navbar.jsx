@@ -10,7 +10,7 @@ export default function Navbar() {
     <>
       <nav className="w-full flex p-4 lg:p-6 items-center justify-between">
         <div className="flex items-center">
-          <h1 className="font-bold text-2xl md:text-3xl lg:text-4xl tracking-tighter lg:mr-8">
+          <h1 className="font-bold text-2xl md:text-3xl lg:text-4xl tracking-tighter lg:mr-8 max-w-xs md:max-w-none">
             <Link to={"/"}>ECUOT Repositorio Institucional</Link>
           </h1>
           <ul className="hidden lg:flex gap-6 text-sm font-medium">
@@ -27,7 +27,7 @@ export default function Navbar() {
           </ul>
         </div>
         <button className="hidden lg:block p-2 border border-gray-400 rounded-lg hover:bg-gray-200 transition-colors">
-          <Link to="/login">Iniciar sesion</Link>
+          <Link to="/auth">Iniciar sesion</Link>
         </button>
         {modalNavbar ? (
           <HiOutlineXMark
@@ -42,7 +42,7 @@ export default function Navbar() {
         )}
         {modalNavbar && (
           <Modal>
-            <div className="w-4/5 h-[calc(100vh-96px)] bg-white border-t border-l border-black absolute bottom-0 right-0 p-4">
+            <div className="w-4/5 h-[calc(100vh-96px)] md:h-[calc(100vh-80px)] bg-white border-t border-l border-black absolute bottom-0 right-0 p-4">
               <ul className="flex flex-col gap-2 font-semibold">
                 <li onClick={handleCloseModal}>
                   <Link to={"/noticias"}>Noticias</Link>
