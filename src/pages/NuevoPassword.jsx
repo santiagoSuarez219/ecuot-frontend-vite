@@ -6,6 +6,7 @@ import clienteAxios from "../config/clienteAxios";
 const NuevoPassword = () => {
   const [password, setPassword] = useState("");
   const [tokenValido, setTokenValido] = useState(false);
+  const [cargando, setCargando] = useState(true);
 
   const { token } = useParams();
 
@@ -17,6 +18,7 @@ const NuevoPassword = () => {
       } catch (error) {
         toast.error(error.response.data.msg);
       }
+      setCargando(false);
     };
     comprobarToken();
   }, []);
@@ -49,13 +51,16 @@ const NuevoPassword = () => {
       <div className="w-full max-w-sm mx-auto">
         <div className="space-y-2 text-center">
           <h1 className="text-3xl font-bold">Reestablece tu contraseña</h1>
-          <p
-            className={`text-gray-500 ${
-              !tokenValido ? "bg-red-500 rounded-lg text-white p-2 " : ""
-            } `}
-          >
-            {tokenValido ? "Ingresa tu nueva contraseña" : "Token invalido"}
-          </p>
+          {cargando && <p>Cargando...</p>}
+          {!cargando && (
+            <p
+              className={`text-gray-500 ${
+                !tokenValido ? "bg-red-500 rounded-lg text-white p-2 " : ""
+              } `}
+            >
+              {tokenValido ? "Ingresa tu nueva contraseña" : "Token invalido"}
+            </p>
+          )}
         </div>
         {tokenValido && (
           <form onSubmit={handleSubmit} className="mt-4">

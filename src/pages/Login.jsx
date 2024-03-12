@@ -1,6 +1,33 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import clienteAxios from "../config/clienteAxios";
+import useAuth from "../hooks/useAuth";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const { setAuth } = useAuth();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if ([email, password].includes("")) {
+      toast.error("Todos los campos son obligatorios");
+      return;
+    }
+    try {
+      const { data } = await clienteAxios.post(`/usuarios/login`, {
+        email,
+        password,
+      });
+      localStorage.setItem("token", data.token);
+      setAuth(data);
+    } catch (error) {
+      toast.error(error.response.data.msg);
+    }
+  };
+
   return (
     <>
       <main className="w-full flex flex-col justify-center items-center md:mt-0 p-4">
@@ -11,7 +38,10 @@ const Login = () => {
             cuenta
           </p>
         </div>
-        <form className="my-4 w-full max-w-sm space-y-4">
+        <form
+          onSubmit={handleSubmit}
+          className="my-4 w-full max-w-sm space-y-4"
+        >
           <div>
             <label htmlFor="email">Email</label>
             <input
@@ -19,6 +49,8 @@ const Login = () => {
               className="w-full mt-2 p-3 border rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-colors"
               type="email"
               placeholder="m@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div>
@@ -33,6 +65,8 @@ const Login = () => {
               className="w-full mt-2 p-3 border rounded-xl bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-300"
               type="password"
               placeholder="********"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <input
