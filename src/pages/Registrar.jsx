@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
-import axios from "axios";
+import clienteAxios from "../config/clienteAxios";
 
 const Registrar = () => {
   const [nombre, setNombre] = useState("");
@@ -25,16 +25,13 @@ const Registrar = () => {
       return;
     }
     try {
-      const { data } = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/usuarios`,
-        {
-          nombre,
-          apellido,
-          email,
-          password,
-          rol,
-        }
-      );
+      const { data } = await clienteAxios.post("/usuarios", {
+        nombre,
+        apellido,
+        email,
+        password,
+        rol,
+      });
       toast.success(data.msg);
       setNombre("");
       setApellido("");

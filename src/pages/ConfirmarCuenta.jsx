@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import axios from "axios";
+import clienteAxios from "../config/clienteAxios";
 
 const ConfirmarCuenta = () => {
   const { id } = useParams();
@@ -8,9 +8,7 @@ const ConfirmarCuenta = () => {
   const handleSumbmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios(
-        `${import.meta.env.VITE_BACKEND_URL}/usuarios/confirmar/${id}`
-      );
+      const { data } = await clienteAxios(`/usuarios/confirmar/${id}`);
       toast.success(data.msg);
     } catch (error) {
       toast.error(error.response.data.msg);

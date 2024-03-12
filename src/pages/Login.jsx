@@ -25,7 +25,7 @@ const Login = () => {
             <div className="flex justify-between items-center">
               <label htmlFor="password">Password</label>
               <p className="underline underline-offset-1 text-sm cursor-pointer">
-                <Link to={"/olvide-password"}>Olvidaste tu contraseña</Link>
+                <Link to={"olvide-password"}>Olvidaste tu contraseña</Link>
               </p>
             </div>
             <input
