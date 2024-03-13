@@ -54,7 +54,9 @@ export default function Navbar() {
                   <Link to={"/intervenciones"}>Intervenciones</Link>
                 </li>
                 <div className="w-full h-[1px] rounded-sm bg-slate-200"></div>
-                <li>Iniciar sesion</li>
+                <li onClick={handleCloseModal}>
+                  <Link to={"/auth"}>Iniciar Sesion</Link>
+                </li>
               </ul>
             </div>
           </Modal>
