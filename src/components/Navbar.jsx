@@ -2,10 +2,14 @@ import { Link } from "react-router-dom";
 import { HiBars3 } from "react-icons/hi2";
 import { HiOutlineXMark } from "react-icons/hi2";
 import useEcuot from "../hooks/useEcuot";
+import useAuth from "../hooks/useAuth";
+
 import Modal from "../modal";
 
 export default function Navbar() {
   const { modalNavbar, handleCloseModal, handleOpenModal } = useEcuot();
+  const { auth } = useAuth();
+
   return (
     <>
       <nav className="w-full flex p-4 lg:p-6 items-center justify-between">
@@ -26,9 +30,28 @@ export default function Navbar() {
             </li>
           </ul>
         </div>
-        <button className="hidden lg:block p-2 border border-gray-400 rounded-lg hover:bg-gray-200 transition-colors">
-          <Link to="/auth">Iniciar sesion</Link>
-        </button>
+        {auth?.nombre ? (
+          <div className="hidden lg:flex items-center gap-4 text-sm">
+            <p className="text-gray-500">{auth.email}</p>
+            <p className="text-gray-500 capitalize">{auth.rol.nombre}</p>
+            <Link
+              to={"/administrar"}
+              className="hover:underline underline-offset-4 font-medium"
+            >
+              Panel de administrador
+            </Link>
+            <input
+              type="button"
+              value="Cerrar sesion"
+              className="hover:underline underline-offset-4 font-medium"
+            />
+          </div>
+        ) : (
+          <button className="hidden lg:block p-2 border border-gray-400 rounded-lg hover:bg-gray-200 transition-colors">
+            <Link to="/auth">Iniciar sesion</Link>
+          </button>
+        )}
+
         {modalNavbar ? (
           <HiOutlineXMark
             className="text-5xl z-10 lg:hidden"
@@ -53,10 +76,24 @@ export default function Navbar() {
                 <li onClick={handleCloseModal}>
                   <Link to={"/intervenciones"}>Intervenciones</Link>
                 </li>
-                <div className="w-full h-[1px] rounded-sm bg-slate-200"></div>
-                <li onClick={handleCloseModal}>
-                  <Link to={"/auth"}>Iniciar Sesion</Link>
-                </li>
+                <div className="w-full h-[1px] rounded-sm bg-slate-200 mt-12"></div>
+                {auth?.nombre ? (
+                  <div className="flex flex-col gap-4 text-sm font-normal">
+                    <p className="text-gray-500">{auth.email}</p>
+                    <p className="text-gray-500 capitalize">
+                      {auth.rol.nombre}
+                    </p>
+                    <input
+                      type="button"
+                      value="Cerrar sesion"
+                      className="mt-4 font-medium border rounded-lg border-gray-400 p-2"
+                    />
+                  </div>
+                ) : (
+                  <button className="hidden lg:block p-2 border border-gray-400 rounded-lg hover:bg-gray-200 transition-colors">
+                    <Link to="/auth">Iniciar sesion</Link>
+                  </button>
+                )}
               </ul>
             </div>
           </Modal>
